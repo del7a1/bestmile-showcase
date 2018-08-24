@@ -1,0 +1,11 @@
+## Builds
+target
+.bin
+
+## Dependencies
+node_modules
+node
+
+## Idea
+*.iml
+.idea/
