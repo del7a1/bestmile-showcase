@@ -1,6 +1,5 @@
 package com.smilej.bestmile.transport.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.UUID;
@@ -13,6 +12,7 @@ public class Mission {
     private Coordinate dropOffCoordinate;
     private Coordinate currentPositionCoordinate;
     private int passengerCount;
+    private Route route;
 
     public Mission(Coordinate pickUpCoordinate, Coordinate dropOffCoordinate, int passengerCount) {
         this.pickUpCoordinate = pickUpCoordinate;

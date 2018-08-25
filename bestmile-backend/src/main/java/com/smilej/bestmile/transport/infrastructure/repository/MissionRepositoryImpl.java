@@ -24,7 +24,6 @@ public class MissionRepositoryImpl implements MissionRepository {
         currentMissions.putIfAbsent(mission.getId(), mission);
     }
 
-
     @Override
     public void remove(Mission mission) {
         currentMissions.remove(mission.getId());
