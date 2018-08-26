@@ -14,9 +14,9 @@ import static java.util.stream.Collectors.toList;
 /**
  * For mapping details please go to http://project-osrm.org/docs/v5.15.2/api
  */
-public class OsrmMapper {
+class OsrmMapper {
 
-    public static Route toRoute(@NonNull OsrmRouteResponseDto response) {
+    static Route toRoute(@NonNull OsrmRouteResponseDto response) {
         List<Coordinate> routes = Optional.ofNullable(response.getRoutes())
                 .flatMap(CollectionUtil::firstElement)
                 .map(OsrmRouteDto::getGeometry)
@@ -36,7 +36,7 @@ public class OsrmMapper {
         return new Coordinate(coordinate.get(0), coordinate.get(1));
     }
 
-    public static String toOsrmCoordinates(@NonNull Coordinate first, @NonNull Coordinate second) {
+    static String toOsrmCoordinates(@NonNull Coordinate first, @NonNull Coordinate second) {
         return toOsrmCoordinate(first) + ";" + toOsrmCoordinate(second);
     }
 

@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Component
-public class MissionRepositoryImpl implements MissionRepository {
+class MissionRepositoryImpl implements MissionRepository {
 
     private Map<String, Mission> currentMissions = new ConcurrentHashMap<>();
     private AtomicInteger missionsCounter = new AtomicInteger();

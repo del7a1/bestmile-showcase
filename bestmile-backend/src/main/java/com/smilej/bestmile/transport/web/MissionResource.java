@@ -22,7 +22,7 @@ import static com.smilej.bestmile.transport.web.MissionWebSocket.ALL_MISSION_MES
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(MISSION_ENDPOINT)
-public class MissionResource {
+class MissionResource {
 
     public static final String MISSION_ENDPOINT = "/mission";
 

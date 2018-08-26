@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
 
 @Component
 @RequiredArgsConstructor
-public class MissionEventBootstrap {
+class MissionEventBootstrap {
 
     private final CsvMissionEventRepository missionEventRepository;
     private final TaskScheduler taskScheduler;

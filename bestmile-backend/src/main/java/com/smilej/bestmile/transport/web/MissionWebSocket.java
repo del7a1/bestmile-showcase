@@ -10,7 +10,7 @@ import static com.smilej.bestmile.transport.web.MissionResource.MISSION_ENDPOINT
 
 @Component
 @RequiredArgsConstructor
-public class MissionWebSocket implements MissionSender {
+class MissionWebSocket implements MissionSender {
 
     public static final String NEW_MISSION_MESSAGE = MISSION_ENDPOINT + "/new";
     public static final String END_MISSION_MESSAGE = MISSION_ENDPOINT + "/end";

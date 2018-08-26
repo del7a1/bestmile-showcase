@@ -10,9 +10,9 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-public class MoveCalculator {
+class MoveCalculator {
 
-    public static Coordinate calculatePositionAfterMove(Mission mission, double miles) {
+    static Coordinate calculatePositionAfterMove(Mission mission, double miles) {
         val line = LineString.fromLngLats(toPoints(mission.getRoute().getCoordinates()));
         val along = TurfMeasurement.along(line, miles, TurfConstants.UNIT_MILES);
         return new Coordinate(along.longitude(), along.latitude());

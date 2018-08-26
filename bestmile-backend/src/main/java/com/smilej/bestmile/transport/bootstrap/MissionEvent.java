@@ -6,8 +6,10 @@ import lombok.Value;
 import java.util.Date;
 
 @Value
-public class MissionEvent {
+class MissionEvent {
+
     private final Date scheduledStartDate;
     private final Date scheduledEndDate;
     private final Mission mission;
+
 }

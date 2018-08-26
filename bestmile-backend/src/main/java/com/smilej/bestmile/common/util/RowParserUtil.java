@@ -11,6 +11,11 @@ public class RowParserUtil {
 
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/d/yyyy HH:mm:ss a");
 
+    public static Integer asInteger(int columnIndex, String[] cells) {
+        val value = asString(columnIndex, cells);
+        return Integer.valueOf(value);
+    }
+
     public static Double asDouble(int columnIndex, String[] cells) {
         val value = asString(columnIndex, cells);
         return Double.valueOf(value);

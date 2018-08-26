@@ -1,4 +1,4 @@
-package com.smilej.bestmile.transport.infrastructure.config;
+package com.smilej.bestmile.transport.web;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -10,9 +10,9 @@ import static com.smilej.bestmile.transport.web.MissionResource.MISSION_ENDPOINT
 
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
-    public static final String REGISTER_ENDPOINT = "/subscribe";
+    private static final String REGISTER_ENDPOINT = "/subscribe";
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {

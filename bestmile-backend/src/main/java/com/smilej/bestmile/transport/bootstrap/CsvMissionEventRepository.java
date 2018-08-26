@@ -12,15 +12,15 @@ import java.util.stream.StreamSupport;
 import static java.util.Spliterators.spliteratorUnknownSize;
 
 @Component
-public class CsvMissionEventRepository {
+class CsvMissionEventRepository {
 
     private final Resource eventsResource;
 
-    public CsvMissionEventRepository(@Value("classpath:mission-events.csv") Resource eventsResource) {
+    CsvMissionEventRepository(@Value("classpath:mission-events.csv") Resource eventsResource) {
         this.eventsResource = eventsResource;
     }
 
-    public Stream<MissionEvent> getAll() {
+    Stream<MissionEvent> getAll() {
         val rowIterator = new MissionEventParser(new CsvRowIterator(eventsResource));
         return StreamSupport.stream(spliteratorUnknownSize(rowIterator, 0), false);
     }

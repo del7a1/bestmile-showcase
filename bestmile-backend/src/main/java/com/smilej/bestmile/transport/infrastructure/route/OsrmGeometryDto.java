@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class OsrmGeometryDto {
+class OsrmGeometryDto {
 
     private List<List<Double>> coordinates;
 

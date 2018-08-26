@@ -12,6 +12,7 @@ import java.util.Iterator;
 
 import static com.smilej.bestmile.common.util.DateAndTimeUtil.toDate;
 import static com.smilej.bestmile.common.util.RowParserUtil.asDouble;
+import static com.smilej.bestmile.common.util.RowParserUtil.asInteger;
 import static com.smilej.bestmile.common.util.RowParserUtil.asTime;
 
 class MissionEventParser implements Iterator<MissionEvent> {
@@ -19,8 +20,7 @@ class MissionEventParser implements Iterator<MissionEvent> {
     /**
      * Data was exported at 6 AM
      */
-    public static final int EXPORT_DATA_HOUR = 6;
-
+    private static final int EXPORT_DATA_HOUR = 6;
 
     private static final int PICK_UP_DATE_INDEX = 1;
     private static final int DROP_OFF_DATE_INDEX = 2;
@@ -28,10 +28,11 @@ class MissionEventParser implements Iterator<MissionEvent> {
     private static final int PICK_UP_LAT_INDEX = 6;
     private static final int DROP_OFF_LNG_INDEX = 7;
     private static final int DROP_OFF_LAT_INDEX = 8;
+    private static final int PASSENGER_COUNT_INDEX = 9;
 
     private final RowIterator rowIterator;
 
-    public MissionEventParser(RowIterator rowIterator) {
+    MissionEventParser(RowIterator rowIterator) {
         this.rowIterator = rowIterator;
 
         if (rowIterator.hasNext()) {
@@ -69,7 +70,7 @@ class MissionEventParser implements Iterator<MissionEvent> {
                         asDouble(DROP_OFF_LNG_INDEX, cells),
                         asDouble(DROP_OFF_LAT_INDEX, cells)
                 ),
-                1
+                asInteger(PASSENGER_COUNT_INDEX, cells)
         );
     }
 
@@ -81,6 +82,5 @@ class MissionEventParser implements Iterator<MissionEvent> {
                 .plusSeconds(time.getSecond());
         return toDate(currentTime.atDate(LocalDate.now()));
     }
-
 
 }
