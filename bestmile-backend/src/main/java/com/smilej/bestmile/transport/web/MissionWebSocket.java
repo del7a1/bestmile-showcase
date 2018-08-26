@@ -12,10 +12,11 @@ import static com.smilej.bestmile.transport.web.MissionResource.MISSION_ENDPOINT
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class MissionWebSocket implements MissionSender{
+public class MissionWebSocket implements MissionSender {
 
     public static final String NEW_MISSION_MESSAGE = MISSION_ENDPOINT + "/new";
     public static final String END_MISSION_MESSAGE = MISSION_ENDPOINT + "/end";
+    public static final String ALL_MISSION_MESSAGE = MISSION_ENDPOINT + "/all";
 
     private final SimpMessagingTemplate websocket;
 

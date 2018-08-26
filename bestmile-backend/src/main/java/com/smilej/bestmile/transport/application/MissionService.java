@@ -1,5 +1,6 @@
 package com.smilej.bestmile.transport.application;
 
+import com.smilej.bestmile.transport.domain.Coordinate;
 import com.smilej.bestmile.transport.domain.RouteCalculator;
 import com.smilej.bestmile.transport.domain.Mission;
 import com.smilej.bestmile.transport.domain.MissionRepository;
@@ -28,8 +29,8 @@ public class MissionService {
         missionRepository.remove(mission);
     }
 
-    public List<Mission> getCurrentMissions() {
-        return missionRepository.getCurrentMissions();
+    public List<Mission> getCurrentMissions(Coordinate northEast, Coordinate southWest) {
+        return missionRepository.getCurrentMissions(northEast, southWest);
     }
 
 }

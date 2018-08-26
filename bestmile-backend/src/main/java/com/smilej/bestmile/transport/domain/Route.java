@@ -1,7 +1,18 @@
 package com.smilej.bestmile.transport.domain;
 
-import lombok.Data;
+import com.google.common.collect.ImmutableList;
+import lombok.NonNull;
+import lombok.Value;
 
-@Data
+import java.util.List;
+
+@Value
 public class Route {
+
+    private List<Coordinate> waypoints;
+
+    public Route(@NonNull List<Coordinate> waypoints) {
+        this.waypoints = ImmutableList.copyOf(waypoints);
+    }
+
 }
