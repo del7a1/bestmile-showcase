@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import L from "leaflet";
-import 'leaflet-routing-machine';
-import SockJS from "sockjs-client"
-import Stomp from "stompjs"
+
+import store from "../../stores";
+import { stompClient } from "../../websocket"
 
 const style = {
   width: "100%",
@@ -17,8 +17,8 @@ class Map extends Component {
     // create map
     this.map = L.map("map", {
       center: newYorkCoordinates,
-      zoom: 12,
-      minZoom: 12,
+      zoom: 13,
+      minZoom: 13,
       layers: [
         L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
           attribution:
@@ -27,40 +27,23 @@ class Map extends Component {
       ]
     });
 
-    let socket = new SockJS('http://localhost:8080/subscribe');
-    let stompClient = Stomp.over(socket);
-    stompClient.connect({}, (frame) => {
+    // bind with store
+    store.getState().taxiLayer.addTo(this.map);
 
-      stompClient.subscribe('/user/mission/all', (msg) => {
-        JSON.parse(msg.body).forEach((mission) => this.addMission(mission));
-      });
-
-      stompClient.subscribe('/mission/new', (msg) => {
-
-        this.addMission(JSON.parse(msg.body));
-      });
-    });
-
-    this.map.on('moveend ', (event) => {
-       console.log(this.map.getBounds());
-       stompClient.send("/app/mission", {}, this.map.getBounds());
-     });
-
+    this.map.on('moveend ', () => this.notifyAboutMove());
+    this.map.whenReady(() => setTimeout(() => this.notifyAboutMove(), 500));
   }
 
-  addMission(mission) {
-    let myIcon = L.icon({iconUrl: 'taxi-logo.png', iconSize: [25, 25]});
-    L.marker(mission.currentPositionCoordinate, {icon: myIcon})
-      .bindPopup('<p>Hello world!<br />This is a nice popup.</p>')
-      .openPopup()
-      .addTo(this.map);
-    let polyline = L.polyline(mission.route.waypoints, {color: 'blue'}).addTo(this.map);
+  notifyAboutMove() {
+     let bounds = this.map.getBounds();
+     let payload = {northEast: bounds.getNorthEast(), southWest: bounds.getSouthWest()};
+     stompClient.send("/app/mission", {}, JSON.stringify(payload));
   }
 
   render() {
     return (
       <div>
-        <div id="map" style={style} />;
+        <div id="map" style={style} />
       </div>
     );
   }

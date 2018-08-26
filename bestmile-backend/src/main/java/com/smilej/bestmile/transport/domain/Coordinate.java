@@ -7,8 +7,8 @@ import lombok.Value;
 @Value
 public class Coordinate {
 
-    private final double longitude; // dł
-    private final double latitude; //szer
+    private final double longitude;
+    private final double latitude;
 
     @JsonValue
     public double[] getValue() {
@@ -21,4 +21,5 @@ public class Coordinate {
                 && longitude < northEast.longitude
                 && longitude > southWest.longitude;
     }
+
 }
