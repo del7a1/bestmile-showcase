@@ -1,2 +1,4 @@
 export const NEW_MISSION = "NEW_MISSION";
-export const MAP_UPDATE = "MAP_UPDATE";
+export const ALL_UPDATED = "ALL_UPDATED";
+export const MAP_MOVED = "MAP_MOVED";
+export const MOVE_NOTIFICATION = "MOVE_NOTIFICATION";

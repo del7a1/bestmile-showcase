@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import L from "leaflet";
-
+import { moveMap } from "../../actions";
 import store from "../../stores";
-import { stompClient } from "../../websocket"
 
 const style = {
   width: "100%",
@@ -31,13 +30,13 @@ class Map extends Component {
     store.getState().taxiLayer.addTo(this.map);
 
     this.map.on('moveend ', () => this.notifyAboutMove());
-    this.map.whenReady(() => setTimeout(() => this.notifyAboutMove(), 500));
+    this.map.whenReady(() => setTimeout(() => this.notifyAboutMove(), 1000));
   }
 
   notifyAboutMove() {
      let bounds = this.map.getBounds();
      let payload = {northEast: bounds.getNorthEast(), southWest: bounds.getSouthWest()};
-     stompClient.send("/app/mission", {}, JSON.stringify(payload));
+     store.dispatch(moveMap(payload));
   }
 
   render() {
