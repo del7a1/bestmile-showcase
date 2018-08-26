@@ -1,9 +1,6 @@
 package com.smilej.bestmile.transport.application;
 
-import com.smilej.bestmile.transport.domain.Coordinate;
-import com.smilej.bestmile.transport.domain.RouteCalculator;
-import com.smilej.bestmile.transport.domain.Mission;
-import com.smilej.bestmile.transport.domain.MissionRepository;
+import com.smilej.bestmile.transport.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +28,17 @@ public class MissionService {
 
     public List<Mission> getCurrentMissions(Coordinate northEast, Coordinate southWest) {
         return missionRepository.getCurrentMissions(northEast, southWest);
+    }
+
+    public Statistic getStatistics() {
+        return missionRepository.getStatistics();
+    }
+
+    public void simulateMove(double miles) {
+        missionRepository.getCurrentMissions()
+                .forEach(mission -> mission.simulateMove(miles));
+
+        missionSender.notifyAboutMove();
     }
 
 }

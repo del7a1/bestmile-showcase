@@ -8,4 +8,6 @@ public interface MissionSender {
 
     void notifyAboutEnd(Mission mission);
 
+    void notifyAboutMove();
+
 }

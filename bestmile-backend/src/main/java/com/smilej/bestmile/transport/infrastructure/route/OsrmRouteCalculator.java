@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import static com.smilej.bestmile.transport.infrastructure.route.OsrmCoordinateMapper.toOsrmCoordinates;
-import static com.smilej.bestmile.transport.infrastructure.route.OsrmCoordinateMapper.toRoute;
+import static com.smilej.bestmile.transport.infrastructure.route.OsrmMapper.toOsrmCoordinates;
+import static com.smilej.bestmile.transport.infrastructure.route.OsrmMapper.toRoute;
 
 @Component
 public class OsrmRouteCalculator implements RouteCalculator {
 
-    private final static String ROUTING_PATH = "/route/v1/driving/{coordinates}";
+    private static final String ROUTING_PATH = "/route/v1/driving/{coordinates}";
 
     private final RestTemplate osrmClient = new RestTemplate();
     private final String osrmRoutingUrl;
@@ -27,7 +27,7 @@ public class OsrmRouteCalculator implements RouteCalculator {
     @Override
     public Route calculateRoute(Mission mission) {
         val url = UriComponentsBuilder.fromHttpUrl(osrmRoutingUrl)
-                .queryParam("steps", true)
+                .queryParam("geometries", "geojson")
                 .buildAndExpand(getCoordinatePathVariable(mission))
                 .toUriString();
 

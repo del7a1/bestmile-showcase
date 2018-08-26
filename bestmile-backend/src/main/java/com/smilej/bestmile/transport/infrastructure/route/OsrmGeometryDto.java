@@ -5,6 +5,8 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class OsrmLegsDto {
-    private List<OsrmStepDto> steps;
+public class OsrmGeometryDto {
+
+    private List<List<Double>> coordinates;
+
 }

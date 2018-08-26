@@ -4,6 +4,8 @@ import lombok.Data;
 
 import java.util.UUID;
 
+import static com.smilej.bestmile.transport.domain.MoveCalculator.calculatePositionAfterMove;
+
 @Data
 public class Mission {
 
@@ -12,6 +14,8 @@ public class Mission {
     private Coordinate dropOffCoordinate;
     private Coordinate currentPositionCoordinate;
     private int passengerCount;
+    private double distance;
+    private double currentDistance;
     private Route route;
 
     public Mission(Coordinate pickUpCoordinate, Coordinate dropOffCoordinate, int passengerCount) {
@@ -20,6 +24,11 @@ public class Mission {
 
         this.dropOffCoordinate = dropOffCoordinate;
         this.passengerCount = passengerCount;
+    }
+
+    public void simulateMove(double miles) {
+        this.currentDistance += miles;
+        this.currentPositionCoordinate = calculatePositionAfterMove(this, this.currentDistance);
     }
 
 }

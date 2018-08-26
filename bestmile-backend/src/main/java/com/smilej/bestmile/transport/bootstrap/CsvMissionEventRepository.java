@@ -14,8 +14,11 @@ import static java.util.Spliterators.spliteratorUnknownSize;
 @Component
 public class CsvMissionEventRepository {
 
-    @Value("classpath:mission-events.csv")
-    private Resource eventsResource;
+    private final Resource eventsResource;
+
+    public CsvMissionEventRepository(@Value("classpath:mission-events.csv") Resource eventsResource) {
+        this.eventsResource = eventsResource;
+    }
 
     public Stream<MissionEvent> getAll() {
         val rowIterator = new MissionEventParser(new CsvRowIterator(eventsResource));

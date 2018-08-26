@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 @UtilityClass
 public class RowParserUtil {
 
-    private final static DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/d/yyyy HH:mm:ss a");
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/d/yyyy HH:mm:ss a");
 
     public static Double asDouble(int columnIndex, String[] cells) {
         val value = asString(columnIndex, cells);
@@ -17,6 +17,10 @@ public class RowParserUtil {
     }
 
     public static LocalTime asTime(int columnIndex, String[] cells) {
+        return asTime(columnIndex, cells, TIME_FORMATTER);
+    }
+
+    public static LocalTime asTime(int columnIndex, String[] cells, DateTimeFormatter formatter) {
         val value = asString(columnIndex, cells);
         return LocalTime.parse(value, TIME_FORMATTER);
     }

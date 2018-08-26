@@ -3,12 +3,14 @@ package com.smilej.bestmile.transport.web;
 import com.smilej.bestmile.transport.application.MissionService;
 import com.smilej.bestmile.transport.domain.Coordinate;
 import com.smilej.bestmile.transport.domain.Mission;
+import com.smilej.bestmile.transport.domain.Statistic;
 import com.smilej.bestmile.transport.web.dto.BoundCoordinateDto;
 import com.smilej.bestmile.transport.web.dto.BoundsDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.annotation.SendToUser;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +27,11 @@ public class MissionResource {
     public static final String MISSION_ENDPOINT = "/mission";
 
     private final MissionService missionService;
+
+    @GetMapping("/statistic")
+    public Statistic getStatistics() {
+        return missionService.getStatistics();
+    }
 
     @MessageMapping(MISSION_ENDPOINT)
     @SendToUser(ALL_MISSION_MESSAGE)

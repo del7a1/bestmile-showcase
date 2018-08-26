@@ -9,6 +9,5 @@ public class OsrmRouteResponseDto {
 
     private String code;
     private List<OsrmRouteDto> routes;
-    private List<OsrmWaypointDto> waypoints;
 
 }

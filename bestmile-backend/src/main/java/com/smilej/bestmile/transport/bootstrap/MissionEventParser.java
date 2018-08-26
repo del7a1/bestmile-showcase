@@ -10,11 +10,11 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.Iterator;
 
-import static com.smilej.bestmile.common.util.DateAndTimeUtil.convertToDate;
+import static com.smilej.bestmile.common.util.DateAndTimeUtil.toDate;
 import static com.smilej.bestmile.common.util.RowParserUtil.asDouble;
 import static com.smilej.bestmile.common.util.RowParserUtil.asTime;
 
-public class MissionEventParser implements Iterator<MissionEvent> {
+class MissionEventParser implements Iterator<MissionEvent> {
 
     /**
      * Data was exported at 6 AM
@@ -79,7 +79,7 @@ public class MissionEventParser implements Iterator<MissionEvent> {
                 .plusHours(time.getHour() - EXPORT_DATA_HOUR)
                 .plusMinutes(time.getMinute())
                 .plusSeconds(time.getSecond());
-        return convertToDate(currentTime.atDate(LocalDate.now()));
+        return toDate(currentTime.atDate(LocalDate.now()));
     }
 
 

@@ -9,10 +9,10 @@ import java.util.List;
 @Value
 public class Route {
 
-    private List<Coordinate> waypoints;
+    private List<Coordinate> coordinates;
 
-    public Route(@NonNull List<Coordinate> waypoints) {
-        this.waypoints = ImmutableList.copyOf(waypoints);
+    public Route(@NonNull List<Coordinate> coordinates) {
+        this.coordinates = ImmutableList.copyOf(coordinates);
     }
 
 }
