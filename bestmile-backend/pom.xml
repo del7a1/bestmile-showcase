@@ -47,6 +47,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.mapbox.mapboxsdk</groupId>
+            <artifactId>mapbox-sdk-turf</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>26.0-jre</version>
@@ -58,6 +63,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.11.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
@@ -66,6 +77,25 @@
 
     <build>
         <plugins>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <target>
+                                <copy todir="${project.build.directory}/classes/static">
+                                    <fileset dir="${project.basedir}/../bestmile-frontend/build"/>
+                                </copy>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

@@ -15,8 +15,8 @@
     </parent>
 
  	<modules>
-        <module>bestmile-backend</module>
         <module>bestmile-frontend</module>
+        <module>bestmile-backend</module>
     </modules>
 
 </project>

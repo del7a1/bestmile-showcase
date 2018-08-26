@@ -1,6 +1,7 @@
 ## Builds
 target
 .bin
+build
 
 ## Dependencies
 node_modules
