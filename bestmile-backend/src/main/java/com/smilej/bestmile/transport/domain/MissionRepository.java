@@ -6,8 +6,8 @@ public interface MissionRepository {
 
     List<Mission> getCurrentMissions();
     List<Mission> getCurrentMissions(Coordinate northEast, Coordinate southWest);
-    Statistic getStatistics();
+    Statistic getStatistic();
     void add(Mission mission);
-    void remove(Mission mission);
+    void remove(String id);
 
 }

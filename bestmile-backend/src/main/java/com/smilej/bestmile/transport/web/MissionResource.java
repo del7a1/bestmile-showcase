@@ -1,12 +1,13 @@
 package com.smilej.bestmile.transport.web;
 
 import com.smilej.bestmile.transport.application.MissionService;
-import com.smilej.bestmile.transport.domain.Coordinate;
-import com.smilej.bestmile.transport.domain.Mission;
-import com.smilej.bestmile.transport.domain.Statistic;
+import com.smilej.bestmile.transport.application.dto.CoordinateDto;
+import com.smilej.bestmile.transport.application.dto.MissionDto;
+import com.smilej.bestmile.transport.application.dto.StatisticDto;
 import com.smilej.bestmile.transport.web.dto.BoundCoordinateDto;
 import com.smilej.bestmile.transport.web.dto.BoundsDto;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.annotation.SendToUser;
@@ -29,20 +30,20 @@ class MissionResource {
     private final MissionService missionService;
 
     @GetMapping("/statistic")
-    public Statistic getStatistics() {
-        return missionService.getStatistics();
+    public StatisticDto getStatistic() {
+        return missionService.getStatistic();
     }
 
     @MessageMapping(MISSION_ENDPOINT)
     @SendToUser(ALL_MISSION_MESSAGE)
-    public List<Mission> getCurrentMissions(@Payload BoundsDto dto) {
-        Coordinate northEast = toCoordinate(dto.getNorthEast());
-        Coordinate southWest =  toCoordinate(dto.getSouthWest());
+    public List<MissionDto> getCurrentMissions(@Payload BoundsDto dto) {
+        val northEast = toCoordinate(dto.getNorthEast());
+        val southWest =  toCoordinate(dto.getSouthWest());
         return missionService.getCurrentMissions(northEast, southWest);
     }
 
-    private Coordinate toCoordinate(BoundCoordinateDto bound) {
-        return new Coordinate(bound.getLng(), bound.getLat());
+    private CoordinateDto toCoordinate(BoundCoordinateDto bound) {
+        return new CoordinateDto(bound.getLng(), bound.getLat());
     }
 
 }

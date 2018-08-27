@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import L from "leaflet";
-import { moveMap } from "../../actions";
-import store from "../../stores";
+import { moveMap } from "../../actions/mission-actions";
+import store from "../../stores/store";
 
 const style = {
   width: "100%",
@@ -30,7 +30,6 @@ class Map extends Component {
     store.getState().taxiLayer.addTo(this.map);
 
     this.map.on('moveend ', () => this.notifyAboutMove());
-    this.map.whenReady(() => setTimeout(() => this.notifyAboutMove(), 1000));
   }
 
   notifyAboutMove() {

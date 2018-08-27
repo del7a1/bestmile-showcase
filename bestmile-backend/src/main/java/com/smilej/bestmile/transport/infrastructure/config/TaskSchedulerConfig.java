@@ -7,4 +7,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Configuration
 @EnableAsync
 @EnableScheduling
-class TaskSchedulerConfig { }
+public class TaskSchedulerConfig {
+
+    public static final double SIMULATE_SECONDS_INTERVAL = 3;
+
+}

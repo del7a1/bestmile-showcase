@@ -1,6 +1,6 @@
 package com.smilej.bestmile.transport.bootstrap;
 
-import com.smilej.bestmile.transport.domain.Mission;
+import com.smilej.bestmile.transport.application.dto.MissionDto;
 import lombok.Value;
 
 import java.util.Date;
@@ -9,7 +9,6 @@ import java.util.Date;
 class MissionEvent {
 
     private final Date scheduledStartDate;
-    private final Date scheduledEndDate;
-    private final Mission mission;
+    private final MissionDto mission;
 
 }

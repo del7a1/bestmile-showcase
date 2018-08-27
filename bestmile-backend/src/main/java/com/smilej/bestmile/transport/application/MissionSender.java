@@ -1,11 +1,10 @@
 package com.smilej.bestmile.transport.application;
 
-import com.smilej.bestmile.transport.domain.Mission;
+import com.smilej.bestmile.transport.application.dto.MissionDto;
 
 public interface MissionSender {
 
-    void notifyAboutNew(Mission mission);
-    void notifyAboutEnd(Mission mission);
+    void notifyAboutNew(MissionDto mission);
     void notifyAboutMove();
 
 }

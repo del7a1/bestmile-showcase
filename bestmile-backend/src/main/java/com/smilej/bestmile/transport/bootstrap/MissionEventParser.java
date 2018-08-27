@@ -1,34 +1,32 @@
 package com.smilej.bestmile.transport.bootstrap;
 
 import com.smilej.bestmile.common.interator.RowIterator;
-import com.smilej.bestmile.transport.domain.Coordinate;
-import com.smilej.bestmile.transport.domain.Mission;
+import com.smilej.bestmile.transport.application.dto.CoordinateDto;
+import com.smilej.bestmile.transport.application.dto.MissionDto;
 import lombok.val;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.Iterator;
 
 import static com.smilej.bestmile.common.util.DateAndTimeUtil.toDate;
-import static com.smilej.bestmile.common.util.RowParserUtil.asDouble;
-import static com.smilej.bestmile.common.util.RowParserUtil.asInteger;
-import static com.smilej.bestmile.common.util.RowParserUtil.asTime;
+import static com.smilej.bestmile.common.util.RowParserUtil.*;
 
 class MissionEventParser implements Iterator<MissionEvent> {
 
     /**
      * Data was exported at 6 AM
      */
-    private static final int EXPORT_DATA_HOUR = 6;
+    public static final int EXPORT_DATA_HOUR = 6;
 
-    private static final int PICK_UP_DATE_INDEX = 1;
-    private static final int DROP_OFF_DATE_INDEX = 2;
-    private static final int PICK_UP_LNG_INDEX = 5;
-    private static final int PICK_UP_LAT_INDEX = 6;
-    private static final int DROP_OFF_LNG_INDEX = 7;
-    private static final int DROP_OFF_LAT_INDEX = 8;
-    private static final int PASSENGER_COUNT_INDEX = 9;
+    public static final int PICK_UP_DATE_INDEX = 1;
+    public static final int PICK_UP_LNG_INDEX = 5;
+    public static final int PICK_UP_LAT_INDEX = 6;
+    public static final int DROP_OFF_LNG_INDEX = 7;
+    public static final int DROP_OFF_LAT_INDEX = 8;
+    public static final int PASSENGER_COUNT_INDEX = 9;
 
     private final RowIterator rowIterator;
 
@@ -53,34 +51,31 @@ class MissionEventParser implements Iterator<MissionEvent> {
             val cells = rowIterator.next();
             return new MissionEvent(
                     parseToCurrentDate(PICK_UP_DATE_INDEX, cells),
-                    parseToCurrentDate(DROP_OFF_DATE_INDEX, cells),
                     parseMission(cells)
             );
         }
         return null;
     }
 
-    private Mission parseMission(String[] cells) {
-        return new Mission(
-                new Coordinate(
-                        asDouble(PICK_UP_LNG_INDEX, cells),
-                        asDouble(PICK_UP_LAT_INDEX, cells)
-                ),
-                new Coordinate(
-                        asDouble(DROP_OFF_LNG_INDEX, cells),
-                        asDouble(DROP_OFF_LAT_INDEX, cells)
-                ),
-                asInteger(PASSENGER_COUNT_INDEX, cells)
-        );
+    private MissionDto parseMission(String[] cells) {
+        val mission = new MissionDto();
+        mission.setPickUpCoordinate(parseCoordinate(PICK_UP_LNG_INDEX, PICK_UP_LAT_INDEX, cells));
+        mission.setDropOffCoordinate(parseCoordinate(DROP_OFF_LNG_INDEX, DROP_OFF_LAT_INDEX, cells));
+        mission.setPassengerCount(asInteger(PASSENGER_COUNT_INDEX, cells));
+        return mission;
+    }
+
+    private CoordinateDto parseCoordinate(int longitudeIndex, int latitudeIndex, String[] cells) {
+        return new CoordinateDto(asDouble(longitudeIndex, cells), asDouble(latitudeIndex, cells));
     }
 
     private Date parseToCurrentDate(int columnIndex, String[] cells) {
         val time = asTime(columnIndex, cells);
-        val currentTime = LocalTime.now()
+        val delayTime = LocalDateTime.now()
                 .plusHours(time.getHour() - EXPORT_DATA_HOUR)
                 .plusMinutes(time.getMinute())
                 .plusSeconds(time.getSecond());
-        return toDate(currentTime.atDate(LocalDate.now()));
+        return toDate(delayTime);
     }
 
 }

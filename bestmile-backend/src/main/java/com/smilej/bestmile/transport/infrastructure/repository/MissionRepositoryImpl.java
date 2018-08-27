@@ -6,9 +6,10 @@ import com.smilej.bestmile.transport.domain.Coordinate;
 import com.smilej.bestmile.transport.domain.Mission;
 import com.smilej.bestmile.transport.domain.MissionRepository;
 import com.smilej.bestmile.transport.domain.Statistic;
+import lombok.NonNull;
+import lombok.val;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -29,30 +30,34 @@ class MissionRepositoryImpl implements MissionRepository {
     }
 
     @Override
-    public List<Mission> getCurrentMissions(Coordinate northEast, Coordinate southWest) {
+    public List<Mission> getCurrentMissions(@NonNull Coordinate northEast, @NonNull Coordinate southWest) {
         return currentMissions.values().stream()
                 .filter(mission ->
-                        mission.getPickUpCoordinate().between(northEast, southWest)
-                                || mission.getDropOffCoordinate().between(northEast, southWest)
-                                || mission.getCurrentPositionCoordinate().between(northEast, southWest)
+                        mission.getPickUpCoordinate().isBetween(northEast, southWest)
+                                || mission.getDropOffCoordinate().isBetween(northEast, southWest)
+                                || mission.getCurrentPositionCoordinate().isBetween(northEast, southWest)
                 ).collect(Collectors.toList());
     }
 
     @Override
-    public void add(Mission mission) {
+    public void add(@NonNull Mission mission) {
         missionsCounter.incrementAndGet();
         currentMissions.putIfAbsent(mission.getId(), mission);
     }
 
     @Override
-    public void remove(Mission mission) {
-        totalDistance.addAndGet(mission.getDistance());
+    public void remove(@NonNull String id) {
+        val mission = currentMissions.get(id);
+        if (mission == null) {
+            return;
+        }
+        totalDistance.addAndGet(mission.getCurrentDistance());
         totalPassengerCount.addAndGet(mission.getPassengerCount());
         currentMissions.remove(mission.getId());
     }
 
     @Override
-    public Statistic getStatistics() {
+    public Statistic getStatistic() {
         return new Statistic(missionsCounter.get(), totalPassengerCount.get(), totalDistance.get());
     }
 

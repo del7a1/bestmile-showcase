@@ -28,6 +28,7 @@ class OsrmMapper {
 
     private static List<Coordinate> toCoordinates(List<List<Double>> coordinates) {
         return coordinates.stream()
+                .filter(coordinate -> coordinate.size() == 2)
                 .map(OsrmMapper::toCoordinate)
                 .collect(toList());
     }

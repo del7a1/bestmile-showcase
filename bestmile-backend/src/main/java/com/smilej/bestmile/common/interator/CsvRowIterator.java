@@ -1,7 +1,6 @@
 package com.smilej.bestmile.common.interator;
 
 import lombok.SneakyThrows;
-import lombok.val;
 import org.springframework.core.io.Resource;
 
 import java.io.BufferedReader;
@@ -27,7 +26,7 @@ public class CsvRowIterator implements RowIterator {
 
     public String[] next() {
         if (hasNext()) {
-            val line = nextLine.split(SEPARATOR);
+            String[] line = nextLine.split(SEPARATOR);
             updateNextLine();
             return line;
         }

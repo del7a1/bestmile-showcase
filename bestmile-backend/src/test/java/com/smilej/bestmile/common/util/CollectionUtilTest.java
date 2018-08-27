@@ -67,5 +67,4 @@ public class CollectionUtilTest {
         assertThat(result.isPresent()).isFalse();
     }
 
-
 }

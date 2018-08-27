@@ -1,7 +1,7 @@
 import SockJS from "sockjs-client"
 import Stomp from "stompjs"
-import store from "../stores";
-import { newMission, updateAll, notifyAboutMove } from "../actions";
+import store from "../stores/store";
+import { newMission, updateAll, notifyAboutMove } from "../actions/mission-actions";
 
 const apiUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:8080' : '';
 
@@ -11,6 +11,8 @@ export const stompClient = Stomp.over(socket);
 export function connectToSocket() {
 
     stompClient.connect({}, (frame) => {
+      store.dispatch(notifyAboutMove());
+
       stompClient.subscribe('/user/mission/all', (msg) => {
         store.dispatch(updateAll(JSON.parse(msg.body)));
       });
@@ -19,7 +21,7 @@ export function connectToSocket() {
         store.dispatch(newMission(JSON.parse(msg.body)));
       });
 
-      stompClient.subscribe('/mission/move', (msg) => {
+      stompClient.subscribe('/mission/move', () => {
         store.dispatch(notifyAboutMove());
       });
     });

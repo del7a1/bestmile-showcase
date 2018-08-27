@@ -12,7 +12,7 @@ import static com.smilej.bestmile.transport.web.MissionResource.MISSION_ENDPOINT
 @EnableWebSocketMessageBroker
 class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
-    private static final String REGISTER_ENDPOINT = "/subscribe";
+    public static final String REGISTER_ENDPOINT = "/subscribe";
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {

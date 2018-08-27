@@ -1,4 +1,4 @@
-import { NEW_MISSION, ALL_UPDATED, MAP_MOVED, MOVE_NOTIFICATION } from "../constants/mission-types";
+import { NEW_MISSION, ALL_UPDATED, MAP_MOVED, MOVE_NOTIFICATION } from "../constants/mission-constants";
 
 export const newMission = mission => ({ type: NEW_MISSION, payload: mission });
 export const updateAll = missions => ({ type: ALL_UPDATED, payload: missions });

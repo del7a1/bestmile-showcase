@@ -2,6 +2,6 @@ package com.smilej.bestmile.transport.domain;
 
 public interface RouteCalculator {
 
-    Route calculateRoute(Mission mission);
+    Route calculateRoute(Coordinate pickUp, Coordinate dropOff);
 
 }

@@ -12,7 +12,7 @@ public class CsvMissionEventRepositoryTest {
     private static final Resource TEST_RESOURCE = new ClassPathResource("test-mission-events.csv");
 
     @Test
-    public void should_parse_valid_file() {
+    public void should_parse_valid_file() throws Exception {
         // given
         val objectUnderTest = new CsvMissionEventRepository(TEST_RESOURCE);
         // when
@@ -23,7 +23,6 @@ public class CsvMissionEventRepositoryTest {
         assertThat(firstResult.getMission()).isNotNull();
         assertThat(firstResult.getMission().getPassengerCount()).isEqualTo(3);
         assertThat(firstResult.getScheduledStartDate()).isNotNull();
-        assertThat(firstResult.getScheduledEndDate()).isNotNull();
     }
 
 }
