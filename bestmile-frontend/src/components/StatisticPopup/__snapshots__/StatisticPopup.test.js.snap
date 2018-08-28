@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatisticPopup Should render correctly 1`] = `
+<div>
+  <label
+    for="missionsCounter"
+  >
+    Missions completed
+  </label>
+  <input
+    className="mm-popup__input"
+    id="missionsCounter"
+    type="text"
+    value={1}
+  />
+  <label
+    for="totalPassengerCount"
+  >
+    Total number of passengers
+  </label>
+  <input
+    className="mm-popup__input"
+    id="totalPassengerCount"
+    type="text"
+    value={2}
+  />
+  <label
+    for="totalDistance"
+  >
+    Total traveled distance (miles)
+  </label>
+  <input
+    className="mm-popup__input"
+    id="totalDistance"
+    type="text"
+    value={3}
+  />
+</div>
+`;

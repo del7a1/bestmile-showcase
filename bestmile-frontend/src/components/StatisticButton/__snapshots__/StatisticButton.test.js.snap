@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatisticButton Should render correctly 1`] = `
+<div>
+  <button
+    onClick={[Function]}
+  >
+    Show Statistics
+  </button>
+  <Popup
+    btnClass="mm-popup__btn"
+    className="mm-popup"
+    closeBtn={true}
+    closeHtml={null}
+    closeOnOutsideClick={true}
+    defaultCancel="Cancel"
+    defaultCancelKey="esc"
+    defaultOk="Ok"
+    defaultOkKey="enter"
+    escToClose={true}
+  />
+</div>
+`;
