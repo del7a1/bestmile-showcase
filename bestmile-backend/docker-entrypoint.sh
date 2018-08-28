@@ -17,8 +17,6 @@ if [ "$1" = 'osrm' ]; then
   fi
 
   ./osrm-routed $DATA_PATH/$2.osrm --max-table-size 8000 &
-  child=$!
-  wait "$child"
 else
   exec "$@"
 fi
