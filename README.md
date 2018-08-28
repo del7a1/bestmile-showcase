@@ -1,5 +1,5 @@
 # App for Bestmile
-![View of working app](bestmile.png?raw=true "Screen")
+![View of working app](bestmile-app.png?raw=true "Screen")
 
 # How to Run
 ## Requirements
