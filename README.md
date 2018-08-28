@@ -1,3 +1,6 @@
+# App for Bestmile
+![View of working app](bestmile.png?raw=true "Screen")
+
 # How to Run
 ## Requirements
 Install [Docker](https://www.docker.com/)
