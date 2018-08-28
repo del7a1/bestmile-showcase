@@ -2,6 +2,7 @@
   "env": {
     "test": {
       "presets": [
+        "react",
         ["env", { "modules": "commonjs" }]
       ]
     }

@@ -2,7 +2,7 @@ import { NEW_MISSION, ALL_UPDATED, MAP_MOVED, MOVE_NOTIFICATION } from "../const
 import MissionLayer from "../types/MissionLayer";
 import { stompClient } from "../websocket/websocket-client"
 
-const initialState = {
+export const initialState = {
   missionLayer: new MissionLayer(),
   bounds: {
     northEast: {lat: 40.741924698522084, lng: -73.68152618408205},
@@ -30,7 +30,7 @@ const rootReducer = (state = initialState, action) => {
 
 function requestForAllMission(bounds) {
   try {
-    stompClient.send("/app/mission", {}, JSON.stringify(bounds));
+    stompClient.send('/app/mission', {}, JSON.stringify(bounds));
   } catch (e) {
     console.error(e, e.stack);
   }

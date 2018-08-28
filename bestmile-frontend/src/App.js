@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Map from './components/Map/Map';
+import Statistic from './components/Statistic/Statistic';
 
 class App extends Component {
 
@@ -7,6 +8,7 @@ class App extends Component {
     return (
       <div>
         <Map />
+        <Statistic />
       </div>
     );
   }

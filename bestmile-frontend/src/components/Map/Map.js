@@ -10,7 +10,7 @@ const style = {
 
 const newYorkCoordinates = [40.709465026855469,-73.797340393066406];
 
-class Map extends Component {
+export default class Map extends Component {
 
   componentDidMount() {
     // create map
@@ -47,5 +47,3 @@ class Map extends Component {
   }
 
 }
-
-export default Map;

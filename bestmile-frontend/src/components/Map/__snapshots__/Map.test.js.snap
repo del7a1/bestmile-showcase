@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Map Should render correctly 1`] = `
+<Map>
+  <div>
+    <div
+      id="map"
+      style={
+        Object {
+          "height": "500px",
+          "width": "100%",
+        }
+      }
+    />
+  </div>
+</Map>
+`;
