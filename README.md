@@ -2,7 +2,7 @@
 ## Requirements
 Install [Docker](https://www.docker.com/)
 
-### Run  app from docker image
+### Run app from docker image (pushed to https://hub.docker.com/)
 ```
 docker run -p 8080:8080 -t smilej/bestmile-backend:latest
 ```
