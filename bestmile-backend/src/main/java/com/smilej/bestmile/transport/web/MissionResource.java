@@ -11,6 +11,7 @@ import lombok.val;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.annotation.SendToUser;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ import java.util.List;
 import static com.smilej.bestmile.transport.web.MissionResource.MISSION_ENDPOINT;
 import static com.smilej.bestmile.transport.web.MissionWebSocket.ALL_MISSION_MESSAGE;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(MISSION_ENDPOINT)
@@ -38,7 +40,7 @@ class MissionResource {
     @SendToUser(ALL_MISSION_MESSAGE)
     public List<MissionDto> getCurrentMissions(@Payload BoundsDto dto) {
         val northEast = toCoordinate(dto.getNorthEast());
-        val southWest =  toCoordinate(dto.getSouthWest());
+        val southWest = toCoordinate(dto.getSouthWest());
         return missionService.getCurrentMissions(northEast, southWest);
     }
 

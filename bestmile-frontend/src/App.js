@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import Map from './components/Map/Map';
-import Statistic from './components/Statistic/Statistic';
+import StatisticButton from './components/StatisticButton/StatisticButton';
+import Popup from 'react-popup'
+import 'react-popup/style.css'
 
-class App extends Component {
+export default class App extends Component {
 
   render() {
     return (
       <div>
         <Map />
-        <Statistic />
+        <StatisticButton />
+        <Popup />
       </div>
     );
   }
 
 }
-
-export default App;

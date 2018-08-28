@@ -2,16 +2,11 @@
 ## Requirements
 Install [Docker](https://www.docker.com/)
 
-### Run in normal mode
+### Run  app from docker image
 ```
 docker run -p 8080:8080 -t smilej/bestmile-backend:latest
 ```
-
-### Run without OSRM engine
-You can skip running of OSRM engine and use "mocked" profile. In this case routes will be just a straightforward lines.
-```
-$ docker run -e "SPRING_PROFILES_ACTIVE=mocked" -p 8080:8080 -t smilej/bestmile-backend:latest
-```
+! It might take some time because beckend must download and prepare OSRM data for New York first
 
 ### Run backend locally
 ~/bestmile/bestmile-backend

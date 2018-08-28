@@ -51,7 +51,7 @@ class MissionRepositoryImpl implements MissionRepository {
         if (mission == null) {
             return;
         }
-        totalDistance.addAndGet(mission.getCurrentDistance());
+        totalDistance.addAndGet(mission.getRoute().getDistance());
         totalPassengerCount.addAndGet(mission.getPassengerCount());
         currentMissions.remove(mission.getId());
     }
