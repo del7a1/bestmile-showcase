@@ -1,9 +1,9 @@
 import { NEW_MISSION, ALL_UPDATED, MAP_MOVED, MOVE_NOTIFICATION } from "../constants/mission-constants";
-import TaxiLayer from "../types/TaxiLayer";
+import MissionLayer from "../types/MissionLayer";
 import { stompClient } from "../websocket/websocket-client"
 
 const initialState = {
-  taxiLayer: new TaxiLayer(),
+  missionLayer: new MissionLayer(),
   bounds: {
     northEast: {lat: 40.741924698522084, lng: -73.68152618408205},
     southWest: {lat: 40.67686269237614, lng: -73.91326904296876}
@@ -13,10 +13,10 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case NEW_MISSION:
-      state.taxiLayer.addMission(action.payload);
+      state.missionLayer.addMission(action.payload);
       return state;
     case ALL_UPDATED:
-      state.taxiLayer.setMissions(action.payload);
+      state.missionLayer.setMissions(action.payload);
       return state;
     case MAP_MOVED:
       return {...state, bounds: action.payload};

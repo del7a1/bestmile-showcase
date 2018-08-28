@@ -27,14 +27,14 @@ class Map extends Component {
     });
 
     // bind with store
-    store.getState().taxiLayer.addTo(this.map);
+    store.getState().missionLayer.addTo(this.map);
 
     this.map.on('moveend ', () => this.notifyAboutMove());
   }
 
   notifyAboutMove() {
-     let bounds = this.map.getBounds();
-     let payload = {northEast: bounds.getNorthEast(), southWest: bounds.getSouthWest()};
+     const bounds = this.map.getBounds();
+     const payload = {northEast: bounds.getNorthEast(), southWest: bounds.getSouthWest()};
      store.dispatch(moveMap(payload));
   }
 

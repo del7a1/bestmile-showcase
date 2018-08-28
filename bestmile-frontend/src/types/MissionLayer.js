@@ -1,26 +1,26 @@
 import L from "leaflet";
 
-export default class TaxiLayer {
+export default class MissionLayer {
 
   constructor() {
-    this.leafletLayer = L.layerGroup();
+    this.markersLayer = L.layerGroup();
     this.routeLayer = L.layerGroup();
     this.missions = [];
   }
 
   addTo(map) {
-    this.leafletLayer.addTo(map);
+    this.markersLayer.addTo(map);
     this.routeLayer.addTo(map);
   }
 
   addMission(mission) {
-    let myIcon = L.icon({iconUrl: 'taxi-logo.png', iconSize: [25, 25]});
-    let passengerCount = mission.passengerCount;
-    let distance = mission.distance;
-    let marker = L.marker(mission.currentPositionCoordinate, {icon: myIcon})
+    const myIcon = L.icon({iconUrl: 'taxi-logo.png', iconSize: [25, 25]});
+    const passengerCount = mission.passengerCount;
+    const distance = mission.distance;
+    const marker = L.marker(mission.currentPositionCoordinate, {icon: myIcon})
       .bindPopup(`<p>passengerCount: ${passengerCount}<br />distance: ${distance}</p>`)
       .openPopup()
-      .addTo(this.leafletLayer);
+      .addTo(this.markersLayer);
 
     // show route on click
     marker.on('click ', (event) => {
@@ -33,7 +33,7 @@ export default class TaxiLayer {
 
   setMissions(newMissions) {
     this.missions = [];
-    this.leafletLayer.clearLayers();
+    this.markersLayer.clearLayers();
     newMissions.forEach((mission) => this.addMission(mission));
   }
 
