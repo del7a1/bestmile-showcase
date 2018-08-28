@@ -64,7 +64,7 @@ ARG JAR_FILE
 COPY ${JAR_FILE} app.jar
 
 ENTRYPOINT /docker-entrypoint.sh osrm NewYork \
-           "http://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf && \
+           "http://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf" && \
            java -Djava.security.egd=file:/dev/./urandom -jar app.jar
 
 EXPOSE 8080
