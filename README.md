@@ -1,7 +1,7 @@
 # App for Bestmile
 ![View of working app](bestmile-app.png?raw=true "Screen")
 
-Applicaitons simulate real taxi NY trafic. Each taxi have start and destination points. Routes betweend this points are calculated by OSRM routing engine.
+Application simulate real NY taxi trafic. Each taxi have start and destination points. Routes betweend this points are calculated by OSRM routing engine.
 
 # How to Run
 ## Requirements
