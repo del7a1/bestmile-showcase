@@ -20,7 +20,7 @@
     "leaflet": "1.3.4",
     "react": "16.0.0",
     "react-dom": "16.0.0",
-    "react-scripts": "1.1.5",
+    "react-scripts": "5.0.1",
     "sockjs-client": "^1.1.5",
     "stompjs": "^2.3.3"
   },
@@ -31,7 +31,7 @@
     "enzyme": "^3.5.0",
     "enzyme-adapter-react-16": "^1.3.0",
     "enzyme-to-json": "^3.3.4",
-    "jest": "^23.5.0",
+    "jest": "^29.3.1",
     "react-popup": "^0.9.3",
     "react-test-renderer": "^16.4.2",
     "redux": "^4.0.0"
